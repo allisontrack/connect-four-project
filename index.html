@@ -12,10 +12,31 @@
 
   <h1>Connect Four</h1>
 
-  <div id="game">
-    <table id="board"></table>
+  <div id="main-container">
+
+    <div class="side-panel">
+      <img src="connect-4-imgs/whale.png" alt="blue whale" class="collage-img" id="whale">
+      <img src="connect-4-imgs/jelly-mold.png" alt="jelly mold dessert" class="collage-img" id="jelly">
+      <img src="connect-4-imgs/toyota.png" alt="red 1978 toyota coupe" class="collage-img" id="toyota">
+
+    </div>
+
+    <div id="game">
+      <table id="board"></table>
+    </div>
+
+    <div class="side-panel">
+      <img src="connect-4-imgs/ship-cake.png" alt="ship shaped cake" class="collage-img" id="cake">
+      <img src="connect-4-imgs/tankard.png" alt="old wooden tankard" class="collage-img" id="tankard">
+      <img src="connect-4-imgs/brass-ring.png" alt="old brass ring" class="collage-img" id="ring">
+    </div>
+
   </div>
 
+  <div id="game-over">
+    <span>Game Over!</span>
+    <span id="state-winner"></span>
+  </div>
 </body>
 
 <script src="connect4.js"></script>

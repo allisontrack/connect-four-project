@@ -4,27 +4,137 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  font-family: 'Roboto';
 }
-
 
 h1 {
   color: white;
   font-family: 'Luckiest Guy', cursive;
   font-size: 3em;
   font-weight: 100;
+  letter-spacing: 4px;
   margin: 10px;
 }
 
+#main-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.side-panel {
+  display: flex;
+  flex-direction: column;
+}
+
+.collage-img {
+  width: 200px;
+}
+
+#whale {
+  margin-top: 50px;
+}
+
+#jelly {
+  margin-top: 50 px;
+}
+
+#jelly:hover {
+  animation: wobble 600ms ease-in-out;
+}
+
+#ring {
+  margin-top: 40px;
+}
+
+#cake {
+  animation: bob 3000ms ease-in-out infinite ;
+  animation: bob 3000ms ease-in-out 0 infinite alternate;
+}
+
+#tankard {
+  width: 150px;
+  margin-top: 20px;
+  margin-left: 35px;
+}
+
+#tankard:hover {
+  animation: tipple 500ms;
+}
+
+.zoom {
+  animation: shake 500ms, zoom-left 1000ms ease-in 500ms 1 normal forwards;
+  /* animation: zoom 2s ease-out 0 iteration-1 left forwards; */
+}
+
+@keyframes wobble {
+  0% { transform: translate(7px, 1px); }
+  10% { transform: translate(-8px, -1px); }
+  20% { transform: translate(7px, 1px); }
+  30% { transform: translate(-6px, -1px); }
+  40% { transform: translate(5px, 1px); }
+  50% { transform: translate(-4px, -1px); }
+  60% { transform: translate(3px, 1px); }
+  70% { transform: translate(-2px, -1px); }
+  80% { transform: translate(2px, 1px); }
+  90% { transform: translate(-1px, -1px); }  
+  100% { transform: translate(1px, 1px); }
+}
+
+@keyframes bob {
+  0% { transform: translateY(3px) rotate(1deg); }
+  33% { transform: translateY(-3px) rotate(-1deg); }
+  67% { transform: translateY(3px) rotate(1deg); }
+  100% { transform: translateY(-3px) rotate(-1deg); }
+}
+
+@keyframes tipple {
+  0% { transform: translate(1px, 1px) rotate(5deg); }
+  10% { transform: translate(-1px, -2px) rotate(-7deg); }
+  20% { transform: translate(3px, 4px) rotate(6deg); }
+  30% { transform: translate(-5px, -4px) rotate(-5deg); }
+  40% { transform: translate(3px, 4px) rotate(5deg); }
+  50% { transform: translate(-3px, -2px) rotate(-4deg); }
+  60% { transform: translate(2px, 1px) rotate(3deg); }
+  70% { transform: translate(-1px, -2px) rotate(-2deg); }
+  80% { transform: translate(1px, 1px) rotate(1deg); }
+  90% { transform: translate(-2px, -1px) rotate(-1deg); }  
+  100% { transform: translate(1px, 1px) rotate(1deg); }
+}
+
+/* credit for shake animation:https://www.w3schools.com/howto/howto_css_shake_image.asp */
+@keyframes shake {
+  0% { transform: translate(1px, 1px) rotate(0deg); }
+  10% { transform: translate(-1px, -2px) rotate(-1deg); }
+  20% { transform: translate(-3px, 0px) rotate(1deg); }
+  30% { transform: translate(3px, 2px) rotate(0deg); }
+  40% { transform: translate(1px, -1px) rotate(1deg); }
+  50% { transform: translate(-1px, 2px) rotate(-1deg); }
+  60% { transform: translate(-3px, 1px) rotate(0deg); }
+  70% { transform: translate(3px, 1px) rotate(-1deg); }
+  80% { transform: translate(-1px, -1px) rotate(1deg); }
+  90% { transform: translate(1px, 2px) rotate(0deg); }
+  100% { transform: translate(1px, -2px) rotate(-1deg); }
+}
+
+@keyframes zoom-left {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(-400%);
+  }
+}
 
 table {
   margin: 50px;
+  margin-top: 10;
 }
 
 /* game board table */
 
 #board td {
-  width: 50px;
-  height: 50px;
+  width: 55px;
+  height: 55px;
   border: solid 2px white;
 }
 
@@ -33,17 +143,22 @@ table {
 .piece {
   /* TODO: make into circles */
   margin: 5px;
-  width: 80%;
-  height: 80%;
+  width: 45px;
+  height: 45px;
   border-radius: 50%;
+  position: relative;
+  top: 0;
+  left: 0;
 }
 
 .p1 {
-  background-color: red;
+  background-color: rgb(189, 46, 46);
+  box-shadow: -3px 3px rgb(66, 16, 16);
 }
 
 .p2 {
-  background-color: blue;
+  background-color: rgb(39, 39, 199);
+  box-shadow: -3px 3px rgb(14, 14, 112);
 }
 
 /* column-top is table row of clickable areas for each column */
@@ -56,6 +171,23 @@ table {
   background-color: gold;
 }
 
-span {
-  font-size: 12px;
+#game-over {
+  position: absolute;
+  width: 500px;
+  height: 150px;
+  border: 4px solid gold;
+  border-radius: 15px;
+  color: white;
+  font-family: 'Luckiest Guy', cursive;
+  font-size: 1.5em;
+  background-color: black;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#state-winner {
+  font-family: 'Roboto';
+  margin: 10px;
 }
