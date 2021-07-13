@@ -52,39 +52,7 @@ function makeHtmlBoard() {
   }
 }
 
-/** findSpotForCol: given column x, return top empty y (null if filled) */
 
-
-function findSpotForCol(x) {
-  for (let i = HEIGHT - 1; i >= 0; i--) {
-    if (!board[i][x]) {
-      return i;
-    }
-  }
-  return null;
-}
-
-// placeInTable: update DOM to place piece into HTML table of board 
-
-function placeInTable(y, x) {
-  const cell = document.getElementById(`${x}-${y}`);
-  const piece = document.createElement('div');              // create piece div
-  piece.setAttribute('class', `piece p${currPlayer}`);    // setting its class to "piece" and to match the current player ("p1" or "p2")
-  cell.append(piece);                                     // appending the div to the current cell
-}
-
-/** endGame: announce game end */
-
-function endGame(msg) {
-  setTimeout( () => {
-    const winBadge = document.querySelector('#game-over');
-    const winMsg = document.querySelector('#state-winner');
-    winBadge.style.display = 'flex';
-    winMsg.innerText = `Player ${currPlayer} has won!`
-  }, 400)
-  const carZoom = document.querySelector('#toyota');
-  carZoom.classList.add('zoom')
-}
 
 // handleClick: handle click of column top to play piece 
 
@@ -122,6 +90,27 @@ function checkIsTie() {
   })
 }
 
+/** findSpotForCol: given column x, return top empty y (null if filled) */
+
+function findSpotForCol(x) {
+  for (let i = HEIGHT - 1; i >= 0; i--) {
+    if (!board[i][x]) {
+      return i;
+    }
+  }
+  return null;
+}
+
+// placeInTable: update DOM to place piece into HTML table of board 
+
+function placeInTable(y, x) {
+  const cell = document.getElementById(`${x}-${y}`);
+  const piece = document.createElement('div');              // create piece div
+  piece.setAttribute('class', `piece p${currPlayer}`);    // setting its class to "piece" and to match the current player ("p1" or "p2")
+  cell.append(piece);                                     // appending the div to the current cell
+}
+
+
 // checkForWin: check board cell-by-cell for "does a win start here?"
 
 function checkForWin() {
@@ -143,12 +132,12 @@ function checkForWin() {
 
   // looking for a win over each cell according to position in matrix
   // along vertical, horizontal, and diagonal lines
-  for (var y = 0; y < HEIGHT; y++) {
-    for (var x = 0; x < WIDTH; x++) {
-      var horiz = [[y, x], [y, x + 1], [y, x + 2], [y, x + 3]];
-      var vert = [[y, x], [y + 1, x], [y + 2, x], [y + 3, x]];
-      var diagDR = [[y, x], [y + 1, x + 1], [y + 2, x + 2], [y + 3, x + 3]];
-      var diagDL = [[y, x], [y + 1, x - 1], [y + 2, x - 2], [y + 3, x - 3]];
+  for (let y = 0; y < HEIGHT; y++) {
+    for (let x = 0; x < WIDTH; x++) {
+      const horiz = [[y, x], [y, x + 1], [y, x + 2], [y, x + 3]];
+      const vert = [[y, x], [y + 1, x], [y + 2, x], [y + 3, x]];
+      const diagDR = [[y, x], [y + 1, x + 1], [y + 2, x + 2], [y + 3, x + 3]];
+      const diagDL = [[y, x], [y + 1, x - 1], [y + 2, x - 2], [y + 3, x - 3]];
 
       // if any one of these return true endGame is run
       if (_win(horiz) || _win(vert) || _win(diagDR) || _win(diagDL)) {
@@ -156,6 +145,19 @@ function checkForWin() {
       }
     }
   }
+}
+
+/** endGame: announce game end */
+
+function endGame(msg) {
+  setTimeout( () => {
+    const winBadge = document.querySelector('#game-over');
+    const winMsg = document.querySelector('#state-winner');
+    winBadge.style.display = 'flex';
+    winMsg.innerText = `Player ${currPlayer} has won!`
+  }, 400)
+  const carZoom = document.querySelector('#toyota');
+  carZoom.classList.add('zoom')
 }
 
 makeBoard();
